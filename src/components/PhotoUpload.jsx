@@ -77,7 +77,6 @@ function PhotoUpload({ onExtracted }) {
           ref={fileInputRef}
           type="file"
           accept="image/*"
-          capture="environment"
           onChange={handleFile}
           hidden
         />

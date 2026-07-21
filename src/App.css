@@ -365,9 +365,33 @@ body {
   color: var(--text);
 }
 
+.subject-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .subject-table {
   width: 100%;
+  min-width: 380px;
+  table-layout: fixed;
   border-collapse: collapse;
+}
+
+.subject-table th:nth-child(1),
+.subject-table td:nth-child(1) {
+  width: 46%;
+}
+
+.subject-table th:nth-child(2),
+.subject-table td:nth-child(2),
+.subject-table th:nth-child(3),
+.subject-table td:nth-child(3) {
+  width: 22%;
+}
+
+.subject-table th:nth-child(4),
+.subject-table td:nth-child(4) {
+  width: 10%;
 }
 
 .subject-table th {
