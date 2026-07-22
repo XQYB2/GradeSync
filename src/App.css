@@ -309,9 +309,14 @@ body {
 
 .semester-header {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
   margin-bottom: 0.75rem;
+}
+
+.semester-label {
+  min-width: 0;
 }
 
 .remove-semester-btn {
@@ -324,6 +329,18 @@ body {
   font-size: 0.8rem;
   white-space: nowrap;
   min-height: 44px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 420px) {
+  .semester-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .remove-semester-btn {
+    width: 100%;
+  }
 }
 
 .photo-upload {
@@ -365,48 +382,72 @@ body {
   color: var(--text);
 }
 
-.subject-table-wrap {
+.subject-grid {
   width: 100%;
-  overflow-x: auto;
 }
 
-.subject-table {
-  width: 100%;
-  min-width: 380px;
-  table-layout: fixed;
-  border-collapse: collapse;
+.subject-grid-header {
+  display: grid;
+  grid-template-columns: 1fr 4.5rem 4.5rem 1.75rem;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
-.subject-table th:nth-child(1),
-.subject-table td:nth-child(1) {
-  width: 46%;
-}
-
-.subject-table th:nth-child(2),
-.subject-table td:nth-child(2),
-.subject-table th:nth-child(3),
-.subject-table td:nth-child(3) {
-  width: 22%;
-}
-
-.subject-table th:nth-child(4),
-.subject-table td:nth-child(4) {
-  width: 10%;
-}
-
-.subject-table th {
-  text-align: left;
+.subject-grid-header span {
   font-size: 0.75rem;
   color: var(--text-dim);
-  padding-bottom: 0.4rem;
 }
 
-.subject-table td {
-  padding: 0.25rem;
+.subject-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 4.5rem 4.5rem 1.75rem;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
 }
 
-.subject-table input {
+.subject-grid-row input {
   width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .subject-grid-header {
+    display: none;
+  }
+
+  .subject-grid-row {
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas:
+      'name name name'
+      'units grade remove';
+    row-gap: 0.4rem;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    background: #0d1220;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+  }
+
+  .subject-name-input {
+    grid-area: name;
+  }
+
+  .subject-units-input {
+    grid-area: units;
+  }
+
+  .subject-grade-input {
+    grid-area: grade;
+  }
+
+  .subject-grid-row .remove-btn {
+    grid-area: remove;
+    justify-self: end;
+  }
+}
+
+.subject-grid-row input {
   padding: 0.6rem 0.5rem;
   border: 1px solid var(--card-border);
   border-radius: 6px;
@@ -416,7 +457,7 @@ body {
   min-height: 44px;
 }
 
-.subject-table input:focus {
+.subject-grid-row input:focus {
   outline: none;
   border-color: var(--blue);
 }
